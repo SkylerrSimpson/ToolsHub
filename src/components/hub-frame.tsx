@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GithubIcon } from "@/components/github-icon";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
@@ -13,7 +14,7 @@ export function HubFrame({
     <div className="hub-theme bg-background text-foreground">
       <div className="mx-auto flex min-h-svh w-full max-w-4xl flex-col px-5 sm:px-8">
         <header className="flex min-h-20 flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4">
-          <Link href="/" className="text-sm font-semibold tracking-tight">
+          <Link href="/" className="text-lg font-semibold tracking-tight">
             Skyler Simpson
           </Link>
           <nav aria-label="Main navigation" className="flex items-center gap-1">
@@ -45,8 +46,16 @@ export function HubFrame({
         <footer className="flex flex-wrap items-center justify-between gap-2 py-5 text-sm text-muted-foreground">
           <span>skylerrsimpson.com</span>
           <div className="-mr-3 flex items-center gap-1">
-            <Button asChild variant="ghost" size="sm">
-              <a href="https://github.com/SkylerrSimpson">GitHub</a>
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="transition-[color] duration-[120ms] ease-[ease] hover:bg-transparent hover:text-[#181717] focus-visible:text-[#181717] motion-reduce:transition-none"
+            >
+              <a href="https://github.com/SkylerrSimpson">
+                <GithubIcon />
+                GitHub
+              </a>
             </Button>
             <Button asChild variant="ghost" size="sm">
               <a href="https://www.skylerrsimpson.com">Portfolio</a>
