@@ -10,7 +10,8 @@ export function getDatabase(): Sql {
     max: 5,
     idle_timeout: 20,
     connect_timeout: 5,
-    connection: { application_name: "tools-hub", statement_timeout: 10000 },
+    // Set statement_timeout on the database role; poolers reject it in startup packets.
+    connection: { application_name: "tools-hub" },
   });
   return pool.toolsHubDatabase;
 }
