@@ -2,7 +2,7 @@
 
 These files coordinate four **independent maintained original checkouts**. No original source, Git history or dependencies are vendored here. Each application can instead use its standalone README and a dedicated PostgreSQL service.
 
-The required `maintained-original` branches currently exist locally under `~/tools-originals`; they have not been pushed. Cloning the public main branches will not supply these maintenance changes yet. Once those branches are published, use the reviewed maintenance revisions.
+Use the published `maintained-original` branch in each original repository. Clone with `git clone --branch maintained-original <repository-url>`, placing the four checkouts under `~/tools-originals` with their existing repository names. The historical `main` branches do not contain the maintained PostgreSQL implementation or deployment adapters.
 
 From the hub root, with the four checkouts present:
 

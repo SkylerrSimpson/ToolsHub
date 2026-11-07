@@ -1,33 +1,32 @@
 # Verification record
 
-Local implementation checks, 2026-11-06. No deployment has occurred.
+GitHub Actions passed for revision `4fb27aa` on 2026-11-07 UTC: [Checks run](https://github.com/SkylerrSimpson/ToolsHub/actions/runs/42324183430). No hub deployment has occurred.
 
-| Check                                  | Result                                                                                                                                                                             |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Strict TypeScript and Next route types | Passed                                                                                                                                                                             |
-| Behavior/API/session unit tests        | 24 passed                                                                                                                                                                          |
-| Real PostgreSQL integration            | Explicitly skipped without `TEST_DATABASE_URL`; not verified                                                                                                                       |
-| Production Next build                  | Passed; includes dynamic saved-data API routes                                                                                                                                     |
-| Browser suite discovery                | Seven workflows load and type-check                                                                                                                                                |
-| Browser execution                      | Blocked before tests: local web server cannot bind (`listen EPERM`)                                                                                                                |
-| Local preview                          | Not running; `127.0.0.1:3100` listener denied                                                                                                                                      |
-| Docker/PostgreSQL startup              | Blocked by Docker socket permissions                                                                                                                                               |
-| Modern clean online install            | Not verified; packages available from existing caches support the successful build, but normal registry access/supply-chain metadata verification did not complete                 |
-| Dependency advisory lookup             | npm's official bulk-advisory endpoint returned no matches for 175 installed modern package names; this is not a guarantee about every optional platform package or future advisory |
-| Formatting                             | Final check recorded after source formatting                                                                                                                                       |
-| CI workflow                            | Authored, not run on GitHub                                                                                                                                                        |
-| Live HTTP/API/deployment               | Not run                                                                                                                                                                            |
+| Check                                     | Result                                                                    |
+| ----------------------------------------- | ------------------------------------------------------------------------- |
+| Clean locked installation                 | Passed on a fresh GitHub runner, including pnpm supply-chain verification |
+| Formatting                                | Passed                                                                    |
+| Strict TypeScript and Next route types    | Passed                                                                    |
+| Behavior/API/session and PostgreSQL tests | 25 passed, none skipped                                                   |
+| Production Next build                     | Passed; includes dynamic saved-data API routes                            |
+| Chromium browser workflows                | Seven passed against a local Next development server and PostgreSQL       |
+| Hosted Vercel/Neon integration            | Not run                                                                   |
+| Custom-domain deployment                  | Not run                                                                   |
 
-Unit coverage includes malformed Dictionary/GitHub responses, unsafe links, zero counts, external 404/rate-limit errors, calculations and invalid numeric inputs, bounded JSON, strict input validation, origin checks, cookie parsing and cross-tab initialization ordering.
+The database tests execute real queries for ownership/read isolation, duplicate handling, atomic rename, expiry and concurrent item limits. Browser workflows exercise Dictionary save/rename/refresh/delete, DevFinder save/remove, Todo persistence and browser isolation, simultaneous first visits, tip calculations, keyboard focus, 360px layouts and an unknown-route 404. External Dictionary/GitHub responses are fixtures, so these checks do not establish live upstream availability, CORS or pronunciation playback.
 
-The database suite exercises real queries for ownership/read isolation, duplicate handling, atomic rename, expiry and concurrent item limits. Its skipped status must not be reported as a pass. Browser persistence tests use a migrated disposable test database and real Next API routes, with fixtures only for external lookups.
+Local TypeScript, unit tests, formatting and production builds also passed. Local database/browser execution was restricted by Docker socket and listener permissions; the successful runtime checks above were performed on the GitHub runner. A targeted query to npm's official bulk-advisory endpoint previously returned no matches for 175 installed modern package names. It does not establish the status of every optional platform package or future advisory.
 
-Outstanding review includes manual visual comparison with originals, keyboard behavior after row edits/deletions, 320px layouts, zoom and long content, pronunciation playback and live CORS/API behavior. Backend review identified the first-visit cookie race; client initialization now uses Web Locks and has a unit regression test. Anonymous session issuance still requires deployment rate controls.
+## Remaining deployment checks
 
-All four maintained original frontends also pass locked clean installs, CI-mode production builds and their targeted React regression tests. Three saved-data servers have six passing validation/cookie tests in total. Their real HTTP/database/browser checks remain unverified. See each original repository's `VALIDATION.md` for the dependency review and exact limits.
+Verify the actual Vercel build and function routing, Neon pooled connections, database role permissions/timeouts, sleep/resume behavior, production cookies, scheduled expiry, backups and rate controls. Anonymous session issuance requires the configured and tested firewall rule described in [deployment](deployment.md). A production build and development-server browser suite do not establish those hosted behaviors.
 
-## Hub presentation update
+Manual visual comparison with originals, 320px layouts, zoom, long content and live pronunciation/API behavior remain outstanding. The hub uses shadcn Item, Button and Separator components; each tool retains its own layout. Original links now point to the published maintenance branches unless a verified live-original URL is configured.
 
-The hub now uses shadcn Item, Button and Separator components in a compact directory. HTTP checks against the existing local server confirmed four tools, all modern links and original-source fallbacks, valid link nesting and successful home/About responses. Type checking, formatting and the production build pass. Individual feature layouts and shared button styling were retained. Chromium launch is still blocked, so visual rendering, narrow viewport and interactive focus checks remain unverified for this revision.
+## Maintained originals
 
-The four original localhost ports did not accept connections. The directory therefore no longer assumes running originals in development; live-original links require explicit configuration.
+All four frontends pass locked clean installs, CI-mode production builds and targeted React regression tests. Three saved-data servers have six passing validation/cookie tests in total. Their real HTTP/database/browser checks remain unverified.
+
+The Vercel adapters additionally pass all four staged production builds and 18 deployment tests. These cover compiled asset inclusion, private-file/source-map exclusions, missing assets, bounded route configuration and secure adapter initialization. They do not emulate Vercel's function tracing or rewrite engine. Tip's manifest no longer references icon files that were absent from the original repository.
+
+The `maintained-original` branches are published independently in the four source repositories. Deploy from those branches, not their historical `main` branches. See each original's `DEPLOYMENT.md` and `VALIDATION.md` for settings, remaining dependency findings and runtime checks.
