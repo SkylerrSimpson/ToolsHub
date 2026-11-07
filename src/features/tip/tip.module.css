@@ -1,0 +1,246 @@
+.page {
+  min-height: calc(100vh - 55px);
+  background: #c5e4e7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 26px;
+  font-family: "Space Mono", monospace;
+  color: #476b6d;
+}
+.calculator {
+  width: 920px;
+  max-width: 100%;
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  box-shadow: 0 22px 48px #387b8015;
+}
+.inputs {
+  padding: 12px 0 8px 12px;
+  min-width: 0;
+}
+.field {
+  margin-bottom: 30px;
+}
+.field:last-child {
+  margin-bottom: 0;
+}
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.labelRow label,
+.tipField legend {
+  font-size: 14px;
+  font-weight: 700;
+}
+.labelRow span {
+  font-size: 10px;
+  color: #a34428;
+  max-width: 150px;
+  text-align: right;
+}
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.inputWrap svg {
+  position: absolute;
+  left: 15px;
+  color: #8babad;
+  pointer-events: none;
+}
+.inputWrap input {
+  width: 100%;
+  min-width: 0;
+  background: #f3f9fa;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  text-align: right;
+  padding: 5px 14px 5px 40px;
+  font-size: 25px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #00494d;
+  outline: none;
+}
+.inputWrap input:focus {
+  border-color: #267c72;
+}
+.inputWrap input[aria-invalid="true"] {
+  border-color: #a34428;
+}
+.tipField {
+  border: 0;
+  padding: 0;
+  margin: 0 0 27px;
+  min-width: 0;
+}
+.tipField legend {
+  margin-bottom: 14px;
+}
+.presets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.presets button {
+  height: 46px;
+  border: 0;
+  background: #00494d;
+  color: #fff;
+  font-weight: 700;
+  font-size: 23px;
+  border-radius: 5px;
+}
+.presets button:hover {
+  background: #9fe8df;
+  color: #00494d;
+}
+.presets .selected {
+  background: #26c0ab;
+  color: #003d40;
+}
+.presets .customButton {
+  background: #f3f9fa;
+  color: #456b6d;
+  font-size: 20px;
+}
+.presets form {
+  margin: 0;
+  min-width: 0;
+}
+.presets input {
+  width: 100%;
+  height: 46px;
+  border: 2px solid #267c72;
+  background: #f3f9fa;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #00494d;
+  text-align: right;
+  padding: 5px;
+  min-width: 0;
+}
+.help {
+  font-size: 10px;
+  line-height: 1.6;
+  min-height: 16px;
+  margin: 9px 0 0;
+}
+.results {
+  background: #00494d;
+  border-radius: 14px;
+  padding: 39px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 55px;
+  min-width: 0;
+}
+.amounts {
+  display: grid;
+  gap: 31px;
+}
+.resultRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.resultRow span {
+  display: block;
+  color: #9cbfc0;
+  font-size: 12px;
+  margin-top: 2px;
+}
+.resultRow output {
+  font-size: clamp(20px, 3.5vw, 43px);
+  line-height: 1.2;
+  color: #26c0ab;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  text-align: right;
+  letter-spacing: -1px;
+}
+.reset {
+  background: #26c0ab;
+  color: #003d40;
+  border: 0;
+  border-radius: 5px;
+  min-height: 44px;
+  font-size: 17px;
+  font-weight: 700;
+  width: 100%;
+}
+.reset:hover {
+  background: #9fe8df;
+}
+.page button:focus-visible,
+.presets input:focus-visible {
+  outline: 3px solid #367e76;
+  outline-offset: 4px;
+}
+.results button:focus-visible {
+  outline-color: white;
+}
+@media (max-width: 790px) {
+  .page {
+    padding: 40px 20px;
+    align-items: flex-start;
+  }
+  .calculator {
+    width: 460px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 28px 24px;
+    border-radius: 20px;
+  }
+  .inputs {
+    padding: 0;
+  }
+  .results {
+    padding: 30px 22px 24px;
+    gap: 30px;
+  }
+  .resultRow output {
+    font-size: 30px;
+  }
+  .amounts {
+    gap: 25px;
+  }
+  .presets button {
+    font-size: 23px;
+  }
+  .field {
+    margin-bottom: 25px;
+  }
+}
+@media (max-width: 370px) {
+  .page {
+    padding: 24px 12px;
+  }
+  .calculator {
+    padding: 24px 18px;
+  }
+  .presets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .resultRow output {
+    font-size: 24px;
+  }
+  .resultRow {
+    font-size: 12px;
+  }
+}

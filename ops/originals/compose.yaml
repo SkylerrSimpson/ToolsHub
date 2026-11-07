@@ -1,0 +1,21 @@
+name: tools-originals
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_PASSWORD: ${ORIGINALS_ADMIN_PASSWORD:?Run python3 tooling/create-local-env.py first}
+      DICTIONARY_PASSWORD: ${DICTIONARY_PASSWORD:?Generate local environment}
+      DEVFINDER_PASSWORD: ${DEVFINDER_PASSWORD:?Generate local environment}
+      TODO_PASSWORD: ${TODO_PASSWORD:?Generate local environment}
+    ports:
+      - "127.0.0.1:55433:5432"
+    volumes:
+      - originals-postgres:/var/lib/postgresql/data
+      - ./tooling/init-databases.sh:/docker-entrypoint-initdb.d/10-originals.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  originals-postgres:
