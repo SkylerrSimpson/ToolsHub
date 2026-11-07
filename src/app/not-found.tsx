@@ -1,14 +1,15 @@
 import Link from "next/link";
+import { HubFrame } from "@/components/hub-frame";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <main id="content" tabIndex={-1} className="reading-page">
-      <p className="eyebrow">404</p>
-      <h1>This page isn’t here.</h1>
-      <p>The tool may have moved, or the link may be incomplete.</p>
-      <Link className="open-tool" href="/">
-        Back to all tools
-      </Link>
-    </main>
+    <HubFrame>
+      <p className="mb-2 text-sm text-muted-foreground">404</p>
+      <h1 className="mb-6 text-3xl font-semibold tracking-tight">Page not found</h1>
+      <Button asChild variant="outline">
+        <Link href="/">Back to tools</Link>
+      </Button>
+    </HubFrame>
   );
 }

@@ -15,4 +15,4 @@ The generator validates the checkouts, refuses existing environment files, and w
 
 The Compose project is `tools-originals`, with PostgreSQL bound to loopback port 55433 and separate databases/roles for Dictionary, DevFinder and Todo. Tip has no database. Database initialization runs only for a new volume. This is local infrastructure, not a production deployment template.
 
-In each checkout, follow its README to install, migrate, build and start. The ports are 4101, 4102, 4103, 4104 respectively. The modern hub links to those ports in development. Its database uses another Compose project and port 55432.
+In each checkout, follow its README to install, migrate, build and start. The ports are 4101, 4102, 4103, 4104 respectively. Once an original is running, set its `NEXT_PUBLIC_ORIGINAL_*_URL` in the hub environment and restart the hub. Until then, the directory links to its source repository. Its database uses another Compose project and port 55432.

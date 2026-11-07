@@ -1,79 +1,84 @@
-import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { HubFrame } from "@/components/hub-frame";
+import { Button } from "@/components/ui/button";
+import { Item, ItemActions, ItemContent, ItemGroup, ItemTitle } from "@/components/ui/item";
+import { Separator } from "@/components/ui/separator";
 import { tools } from "@/lib/tools";
 
-export const metadata = { title: "About these tools" };
+export const metadata = { title: "About" };
 
 export default function About() {
   return (
-    <div className="reading-page">
-      <Link className="back-link" href="/">
-        ← All tools
-      </Link>
-      <main id="content" tabIndex={-1}>
-        <h1>About these tools</h1>
+    <HubFrame page="about">
+      <h1 className="text-3xl font-semibold tracking-tight">About</h1>
+      <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+        These are my smaller projects, updated for Next.js. The original React versions are kept
+        alongside them.
+      </p>
+      <section id="originals" aria-labelledby="originals-heading" className="mt-10 scroll-mt-8">
+        <h2 id="originals-heading" className="mb-4 text-base font-medium">
+          Originals & source
+        </h2>
+        <div id="source" className="scroll-mt-8">
+          <ItemGroup
+            aria-label="Original projects"
+            className="divide-y divide-border rounded-lg border bg-card"
+          >
+            {tools.map((tool) => (
+              <Item
+                key={tool.slug}
+                role="listitem"
+                size="sm"
+                className="gap-3 rounded-none border-0 py-4"
+              >
+                <ItemContent className="min-w-0 basis-36">
+                  <ItemTitle>{tool.name}</ItemTitle>
+                </ItemContent>
+                <ItemActions className="flex-wrap">
+                  {tool.originalHref && (
+                    <Button asChild variant="outline" size="sm">
+                      <a href={tool.originalHref}>
+                        Original
+                        <ArrowUpRight aria-hidden />
+                        <span className="sr-only">: {tool.name}</span>
+                      </a>
+                    </Button>
+                  )}
+                  <Button asChild variant="ghost" size="sm">
+                    <a href={tool.originalSource}>
+                      Source
+                      <ArrowUpRight aria-hidden />
+                      <span className="sr-only">: {tool.name}</span>
+                    </a>
+                  </Button>
+                </ItemActions>
+              </Item>
+            ))}
+          </ItemGroup>
+        </div>
+      </section>
+      <Separator className="my-9" />
+      <section
+        id="privacy"
+        aria-labelledby="privacy-heading"
+        className="max-w-xl scroll-mt-8 text-sm leading-relaxed text-muted-foreground"
+      >
+        <h2 id="privacy-heading" className="mb-3 text-base font-medium text-foreground">
+          Your saved items
+        </h2>
         <p>
-          I’m Skyler Simpson. This is a home for my smaller applications, with working modern
-          versions and preserved originals.
+          Saves are private to this browser, with no sign-in or device sync. Clearing cookies loses
+          access. Modern and original versions have separate collections.
         </p>
-        <section>
-          <h2>What changed</h2>
-          <p>
-            The modern tools use Next.js and TypeScript, with accessible controls and the same core
-            workflows. Each tool keeps its own layout and character. Changes include clearer errors,
-            keyboard access, reliable saved data and fixes to calculation and input handling.
-          </p>
-        </section>
-        <section id="originals">
-          <h2>Original versions</h2>
-          <p>
-            The originals keep their React interfaces and workflows. Their persistence now uses
-            PostgreSQL, with documented compatibility and security changes. Original and modern
-            versions have separate saved data.
-          </p>
-          <ul>
-            {tools.map((tool) => (
-              <li key={tool.slug}>
-                <a href={tool.originalHref ?? tool.originalSource}>
-                  {tool.name}
-                  {tool.originalHref ? " original" : " original source"}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section id="privacy">
-          <h2>How saving works</h2>
-          <p>
-            Dictionary words, GitHub profiles and tasks are stored privately for this browser. There
-            is no sign-in. A browser cookie identifies your collection; it is not shared with other
-            visitors.
-          </p>
-          <p>
-            Clearing cookies, switching browsers or using another device means starting a separate
-            collection. There is no account recovery or cross-device sync. The browser identity
-            lasts for one year from your first save-list visit; after it expires, its collection is
-            no longer accessible and may be deleted. Avoid saving sensitive information.
-          </p>
-          <p>
-            Word searches go to Dictionary API and profile searches go to GitHub. The tip calculator
-            runs entirely in your browser.
-          </p>
-        </section>
-        <section id="source">
-          <h2>Source and implementation</h2>
-          <p>
-            The original repositories are public. The new hub’s source will be linked here when its
-            repository is published.
-          </p>
-          <ul>
-            {tools.map((tool) => (
-              <li key={tool.slug}>
-                <a href={tool.originalSource}>{tool.name} on GitHub</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </main>
-    </div>
+        <p className="mt-3">
+          Modern collections expire one year after your first visit to a tool with saves and may
+          then be deleted. There is no recovery. Avoid saving sensitive information.
+        </p>
+        <p className="mt-3">
+          Word searches go to Dictionary API; profile searches go to GitHub. Tip calculations stay
+          in your browser.
+        </p>
+      </section>
+    </HubFrame>
   );
 }

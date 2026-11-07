@@ -2,19 +2,16 @@ import { BookOpen, Calculator, CheckSquare, CodeXml, type LucideIcon } from "luc
 
 type Tool = {
   slug: string;
-  category: string;
   icon: LucideIcon;
   name: string;
   description: string;
-  detail: string;
   href: string;
-  source: string;
   originalSource: string;
   originalHref?: string;
   persists: boolean;
 };
 
-function originalUrl(value: string | undefined, port: number) {
+function originalUrl(value: string | undefined) {
   if (value) {
     try {
       const url = new URL(value);
@@ -30,60 +27,47 @@ function originalUrl(value: string | undefined, port: number) {
       return undefined;
     }
   }
-  return process.env.NODE_ENV === "development" ? `http://localhost:${port}` : undefined;
 }
 
 export const tools = [
   {
     slug: "dictionary",
-    category: "WORDS",
     icon: BookOpen,
     name: "Dictionary",
-    description: "Find the right word. Keep the ones you want to remember.",
-    detail: "Definitions, pronunciation and a personal word list.",
+    description: "Definitions, pronunciation and saved words.",
     href: "/dictionary",
-    source: "/about#source",
     originalSource: "https://github.com/SkylerrSimpson/DictionaryApp",
-    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_DICTIONARY_URL, 4101),
+    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_DICTIONARY_URL),
     persists: true,
   },
   {
     slug: "devfinder",
-    category: "DEVELOPERS",
     icon: CodeXml,
     name: "DevFinder",
-    description: "Look up a GitHub profile and save it for another day.",
-    detail: "Public profiles, repository counts and saved developers.",
+    description: "Find and save GitHub profiles.",
     href: "/devfinder",
-    source: "/about#source",
     originalSource: "https://github.com/SkylerrSimpson/Devfinder",
-    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_DEVFINDER_URL, 4102),
+    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_DEVFINDER_URL),
     persists: true,
   },
   {
     slug: "todo",
-    category: "EVERYDAY",
     icon: CheckSquare,
     name: "TodoList",
-    description: "A small list for what needs doing.",
-    detail: "Add a task, check it off and keep track of what remains.",
+    description: "A simple list for your tasks.",
     href: "/todo",
-    source: "/about#source",
     originalSource: "https://github.com/SkylerrSimpson/TodoList",
-    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_TODO_URL, 4103),
+    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_TODO_URL),
     persists: true,
   },
   {
     slug: "tip",
-    category: "NUMBERS",
     icon: Calculator,
     name: "Tip calculator",
     description: "Split a bill, including the tip.",
-    detail: "Choose a percentage and see what each person owes.",
     href: "/tip",
-    source: "/about#source",
     originalSource: "https://github.com/SkylerrSimpson/TipApp",
-    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_TIP_URL, 4104),
+    originalHref: originalUrl(process.env.NEXT_PUBLIC_ORIGINAL_TIP_URL),
     persists: false,
   },
 ] as const satisfies readonly Tool[];

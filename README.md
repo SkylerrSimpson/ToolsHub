@@ -20,7 +20,7 @@ Open **http://127.0.0.1:3100**. Keep that hostname consistent with `APP_ORIGIN`,
 
 Without PostgreSQL, the directory, calculator and external lookups still render; saved-data controls report unavailable storage. There is no fallback that silently moves records to browser storage.
 
-Maintained originals live in separate repositories. Their local ports are 4101–4104, linked automatically in development. Follow their own setup instructions; the hub does not install or start them. Production original links use the four `NEXT_PUBLIC_ORIGINAL_*_URL` variables in `.env.example` and must be set before building. Unconfigured links lead to original details instead of implying a live deployment.
+Maintained originals live in separate repositories. Their local ports are 4101–4104. Follow their own setup instructions; the hub does not install or start them. Live-original links use the four `NEXT_PUBLIC_ORIGINAL_*_URL` variables in `.env.example` and must be set before building. Unconfigured directory links are labeled “Original source” and open the GitHub repository. Development does not assume that original servers are running.
 
 The optional [original database setup](ops/originals/README.md) is versioned here for convenience; it operates on separate checkouts and does not share their source or dependencies.
 
@@ -56,7 +56,7 @@ Playwright starts a separate development server at port 3101. Browser persistenc
 - `src/app`: route composition and thin API handlers.
 - `src/features/<tool>`: each tool's UI and parsing/calculation logic, with scoped styles.
 - `src/server`: session, validation, migrations and explicit PostgreSQL operations.
-- `src/lib/tools.ts`: the single directory/version-navigation registry, including icons and categories.
+- `src/lib/tools.ts`: the single directory/version-navigation registry, including icons and version links.
 - `src/components/ui`: shared accessible primitives.
 - `migrations`: ordered, checksummed SQL. Add migrations; never edit an applied one.
 

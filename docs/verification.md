@@ -25,3 +25,9 @@ The database suite exercises real queries for ownership/read isolation, duplicat
 Outstanding review includes manual visual comparison with originals, keyboard behavior after row edits/deletions, 320px layouts, zoom and long content, pronunciation playback and live CORS/API behavior. Backend review identified the first-visit cookie race; client initialization now uses Web Locks and has a unit regression test. Anonymous session issuance still requires deployment rate controls.
 
 All four maintained original frontends also pass locked clean installs, CI-mode production builds and their targeted React regression tests. Three saved-data servers have six passing validation/cookie tests in total. Their real HTTP/database/browser checks remain unverified. See each original repository's `VALIDATION.md` for the dependency review and exact limits.
+
+## Hub presentation update
+
+The hub now uses shadcn Item, Button and Separator components in a compact directory. HTTP checks against the existing local server confirmed four tools, all modern links and original-source fallbacks, valid link nesting and successful home/About responses. Type checking, formatting and the production build pass. Individual feature layouts and shared button styling were retained. Chromium launch is still blocked, so visual rendering, narrow viewport and interactive focus checks remain unverified for this revision.
+
+The four original localhost ports did not accept connections. The directory therefore no longer assumes running originals in development; live-original links require explicit configuration.
