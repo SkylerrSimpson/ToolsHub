@@ -64,6 +64,8 @@ Add a tool's routes and feature folder, then one registry entry. Keep unrelated 
 
 ## Deployment
 
-This is a Node application, not a static export. `pnpm build` produces `.next`; `pnpm start` serves the application and its API on the platform's `PORT`. There is no `out/` publish directory. Render is reserved for the separate portfolio.
+The proposed free hosting arrangement is Vercel Hobby for the Next.js application and Neon Free for PostgreSQL. `vercel.json` records the framework and locked install/build commands. Set `ENABLE_EXPERIMENTAL_COREPACK=1` in the Vercel project to use the pinned pnpm version. Database configuration and live verification remain required before launch.
 
-No public hub repository, hosting service or domain deployment has been created yet. See [deployment](docs/deployment.md) for the proposed arrangement, exact runtime inputs and live verification requirements.
+This application needs Node route handlers, not a static export. Vercel packages the `.next` build using its Next.js integration. For a conventional Node host, `pnpm start` serves the application and its API on the platform's `PORT`. There is no `out/` publish directory. Render is reserved for the separate portfolio.
+
+Source is maintained in [SkylerrSimpson/ToolsHub](https://github.com/SkylerrSimpson/ToolsHub). No hosting service or domain deployment has been created yet. See [deployment](docs/deployment.md) for the proposed arrangement, exact runtime inputs and live verification requirements.

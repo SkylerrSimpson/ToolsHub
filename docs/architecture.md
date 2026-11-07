@@ -6,7 +6,7 @@ The hub and modern tools are one Next.js application, separate from the portfoli
 
 Dictionary, DevFinder and TodoList use PostgreSQL through server-only Next route handlers. Each visitor receives an opaque, HttpOnly browser identity cookie. Records are private to that identity, without login or cross-device synchronization. Clearing the cookie loses access to saved records. Client-supplied owner IDs are never trusted. Tip performs arithmetic locally and has no database requirement.
 
-Use one database with explicit tables and per-tool queries, one bounded connection pool and versioned migrations. Development PostgreSQL runs in a dedicated Docker Compose service. Application containers are optional deployment packaging, not a prerequisite for development. PostgreSQL resources, ports and volumes must be independent of other local projects.
+Use one database with explicit tables and per-tool queries, a bounded connection pool per runtime instance and versioned migrations. Serverless instances do not share an in-memory pool; deployment must account for their aggregate connections. Development PostgreSQL runs in a dedicated Docker Compose service. Application containers are optional deployment packaging, not a prerequisite for development. PostgreSQL resources, ports and volumes must be independent of other local projects.
 
 ## Versions
 
