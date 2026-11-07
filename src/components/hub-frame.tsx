@@ -44,7 +44,12 @@ export function HubFrame({
         </main>
         <Separator />
         <footer className="flex flex-wrap items-center justify-between gap-2 py-5 text-sm text-muted-foreground">
-          <span>skylerrsimpson.com</span>
+          <a
+            href="https://www.skylerrsimpson.com"
+            className="hover:text-foreground hover:underline"
+          >
+            skylerrsimpson.com
+          </a>
           <div className="-mr-3 flex items-center gap-1">
             <Button
               asChild
