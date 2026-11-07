@@ -18,7 +18,10 @@ export default function Home() {
     <HubFrame page="tools">
       <div className="mb-9 sm:mb-11">
         <h1 className="text-3xl font-semibold tracking-tight">Tools</h1>
-        <p className="mt-2 text-sm text-muted-foreground">My smaller apps, in one place.</p>
+        <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
+          Apps I built while learning React, modernized with Next.js. I’ve kept the original
+          versions, too.
+        </p>
       </div>
       <ItemGroup
         aria-label="Applications"
